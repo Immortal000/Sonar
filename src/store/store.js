@@ -25,10 +25,9 @@ export const authHandler = {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
       })
       .catch((error) => {
-        console.log("ERROR WITH SIGN UP");
+        console.log("I HATE ERRORS, IM GONNA KMS");
       });
   },
   logout: async (auth) => {
