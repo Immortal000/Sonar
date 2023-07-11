@@ -1,1 +1,5 @@
-<h1>Home</h1>
+<script>
+  import Navbar from "../components/Navbar.svelte";
+</script>
+
+<Navbar />

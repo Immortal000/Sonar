@@ -1,13 +1,11 @@
 <script>
   // university website
   // import tailwind styles
-  import "../../styles/uni.css";
+  import "../../styles/app.css";
 
   // page params
   import { page } from "$app/stores";
   const university = $page.params.universityName;
 </script>
 
-<div class="container">
-  <div class="toolbar" />
-</div>
+<h1>Current University: {university}</h1>

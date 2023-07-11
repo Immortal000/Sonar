@@ -1,7 +1,13 @@
 <script>
   // university course
+  // css
+  import "../../../styles/app.css";
+  import Navbar from "../../../components/Navbar.svelte";
+
   import { page } from "$app/stores";
   const course = $page.params.universityCourse;
 </script>
 
-<h1>Current Course: {course}</h1>
+<div class="container">
+  <Navbar />
+</div>
