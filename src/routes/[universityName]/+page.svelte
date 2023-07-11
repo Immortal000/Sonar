@@ -8,6 +8,4 @@
   const university = $page.params.universityName;
 </script>
 
-<div class="container">
-  <div class="toolbar" />
-</div>
+<h1>Current University: {university}</h1>
