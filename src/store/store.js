@@ -1,19 +1,19 @@
-import { writeable } from "svelte/store";
+import { writable } from "svelte/store";
 import { auth } from "../firebase";
 
-export const authStore = writeable({
+export const authStore = writable({
   user: null,
   loading: true,
   data: null,
 });
 
-export const uniStore = writeable({
+export const uniStore = writable({
   universityName: null,
   universityCourses: [],
 });
 
 // will have to implement paginations for posts
-export const postsStore = writeable({
+export const postsStore = writable({
   posts: [],
 });
 

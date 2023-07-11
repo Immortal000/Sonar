@@ -9,5 +9,5 @@
 </script>
 
 <div class="container">
-  <Navbar />
+  <!-- <Navbar /> -->
 </div>
