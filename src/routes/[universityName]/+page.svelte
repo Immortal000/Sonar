@@ -1,7 +1,7 @@
 <script>
   // university website
   // import tailwind styles
-  import "../../styles/uni.css";
+  import "../../styles/app.css";
 
   // page params
   import { page } from "$app/stores";
