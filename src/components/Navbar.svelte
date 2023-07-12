@@ -4,7 +4,7 @@
   import { authStore, authHandler } from "../store/store.js";
 
   const loginWithGoogle = async () => {
-    authHandler.signup(auth, provider);
+    authHandler.signup();
   };
 
   const signOutWithGoogle = async () => {
