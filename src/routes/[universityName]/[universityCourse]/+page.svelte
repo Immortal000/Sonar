@@ -9,6 +9,7 @@
 
   import { page } from "$app/stores";
   import { serverTimestamp } from "firebase/firestore";
+  import { auth } from "../../../firebase";
 
   const university = $page.params.universityName;
   const course = $page.params.universityCourse;
@@ -31,10 +32,12 @@
       const post = { ...postSchema };
       console.log(post_title);
       post["post"]["post_title"] = post_title; // post title
-      post["post"]["post_description"] = post_description; // post description
+      post["post"]["post_content"] = post_description; // post description
       post["date_created"] = serverTimestamp(); // time stamp when the request was made
       post["university"]["university_id"] = university; // University id, ex.tamu
       post["university"]["course_id"] = course; // course id, ex.csce120
+      post["user"]["user_name"] = $authStore.user["displayName"] || auth.currentUser.displayName; // user name
+      post["user"]["user_id"] = $authStore.user.uid || auth.currentUser.uid; // user id
 
       databaseHandler.addPost(post);
     } else {

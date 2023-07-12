@@ -46,6 +46,7 @@ export const authHandler = {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
+        console.log(user);
         authStore.update((current) => {
           return {
             user,
@@ -62,6 +63,9 @@ export const authHandler = {
         console.log("Signed out, fuck you!");
         authStore.update((current) => {
           return { user: null };
+        });
+        errorStore.update((current) => {
+          return { error: false, error_type: "" };
         });
       })
       .catch((error) => {
