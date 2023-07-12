@@ -1,6 +1,7 @@
 <script>
   // components
   import Navbar from "../components/Navbar.svelte";
+  import UserPost from "../components/UserPost.svelte";
 
   import { onMount } from "svelte";
   import { auth, db, provider } from "../firebase";
@@ -27,5 +28,6 @@
 
 <div>
   <Navbar />
+  <UserPost />
   <slot />
 </div>

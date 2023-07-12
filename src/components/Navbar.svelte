@@ -13,8 +13,8 @@
 </script>
 
 <nav class="flex justify-between w-10/12 m-auto py-5">
-  <div>
-    <ul class="flex justify-between">
+  <div class="w-max">
+    <ul class="flex">
       <li class="mr-3">
         <a
           class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4"
@@ -32,6 +32,14 @@
           class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4"
           href="/">Contact</a
         >
+      </li>
+      <li>
+        <form action="/" method="POST" autocomplete="on"  class="flex justify-between h-full w-full px-2 border border-gray-500 rounded focus-within:outline">
+          <input type="text" name="search" placeholder="Search" class="h-full focus:outline-none">
+          <button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
       </li>
     </ul>
   </div>
