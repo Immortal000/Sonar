@@ -3,6 +3,7 @@
   import "../styles/app.css";
   // components
   import Navbar from "../components/Navbar.svelte";
+  import UserPost from "../components/UserPost.svelte";
 
   import { onMount } from "svelte";
   import { auth, db, provider } from "../firebase";
@@ -39,5 +40,6 @@
   {/if}
 
   <Navbar />
+  <UserPost />
   <slot />
 </div>
