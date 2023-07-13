@@ -30,7 +30,7 @@ export const databaseHandler = {
   addPost: async (post) => {
     try {
       const docRef = await addDoc(collection(db, "posts"), post);
-      console.log("Added document with ID: ", docRef.id);
+      // console.log("Added document with ID: ", docRef.id);
     } catch (error) {
       console.log("Error has occured shithead");
       console.log(error);
@@ -46,7 +46,6 @@ export const authHandler = {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
         authStore.update((current) => {
           return {
             user,

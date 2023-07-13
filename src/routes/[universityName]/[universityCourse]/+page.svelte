@@ -30,7 +30,6 @@
     if ($authStore.user) {
       // make the request if a user is present. Logged in.
       const post = { ...postSchema };
-      console.log(post_title);
       post["post"]["post_title"] = post_title; // post title
       post["post"]["post_content"] = post_description; // post description
       post["date_created"] = serverTimestamp(); // time stamp when the request was made
