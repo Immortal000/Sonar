@@ -1,7 +1,8 @@
-import { getApp, deleteApp, getApps, initializeApp } from "firebase/app";
+// import { getApp, deleteApp, getApps, initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { initializeApp, getApp, deleteApp, getApps } from "firebase/app";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,

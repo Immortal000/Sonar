@@ -1,0 +1,25 @@
+{
+  "date_created": null,
+  "user": {
+    "user_id": null,
+    "user_name": null
+  },
+  "university": {
+    "university_id": null,
+    "course_id": null
+  },
+  "post": {
+    "post_title": null,
+    "post_content": null,
+    "replies": [],
+    "attachments": [],
+
+    "meta_data": {
+      "type": null,
+      "parent": null,
+      "post_upvotes": 0,
+      "post_upvotes_user_ids": [],
+      "post_bookmark": 0
+    }
+  }
+}
