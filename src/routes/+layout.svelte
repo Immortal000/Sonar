@@ -5,15 +5,16 @@
   import Navbar from "../components/Navbar.svelte";
   import UserPost from "../components/UserPost.svelte";
 
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { auth, db, provider } from "../firebase";
+  import { onSnapshot, collection } from "firebase/firestore";
   import { authStore, errorStore } from "../store/store.js";
 
   onMount(() => {
     console.log("Mounting!");
 
     // ubsubscribing from the auth state change listener
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const authUnSub = auth.onAuthStateChanged((user) => {
       if (user) {
         console.log("User is logged in!"); // confirmation for user logging in
         // updating the store value with the user data
@@ -24,6 +25,14 @@
         });
       }
     });
+
+    // unsubscribing from posts listener
+    const collectionRef = collection(db, "posts");
+
+    return () => {
+      authUnSub();
+      console.log("Unscribing!");
+    };
   });
 </script>
 
@@ -40,6 +49,6 @@
   {/if}
 
   <Navbar />
-  <UserPost />
+  <!-- <UserPost /> -->
   <slot />
 </div>
