@@ -15,6 +15,7 @@
   const course = $page.params.universityCourse;
 
   import postSchema from "../../../schemas/post.json";
+  import Post from "../../../schemas/post.js";
 
   // app variables
   let post_title = "";
@@ -29,6 +30,9 @@
   const createPost = async () => {
     if ($authStore.user) {
       // make the request if a user is present. Logged in.
+      const postClass = new Post(post_title, post_description, "main");
+      postClass.createPost();
+
       const post = { ...postSchema };
       post["post"]["post_title"] = post_title; // post title
       post["post"]["post_content"] = post_description; // post description
@@ -40,7 +44,7 @@
       post["user"]["user_id"] = $authStore.user.uid || auth.currentUser.uid; // user id
 
       // databaseHandler.addPost(post);
-      databaseHandler.addPostToCourse(post, university, course);
+      // databaseHandler.addPostToCourse(post, university, course);
     } else {
       errorStore.update((current) => {
         return {
