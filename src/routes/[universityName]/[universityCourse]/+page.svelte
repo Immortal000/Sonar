@@ -64,11 +64,11 @@
           <button on:click={togglePost}>
             <i class="fa-solid fa-x absolute right-2 top-2" />
           </button>
-          <span>You are posting to course: {$page.url.pathname.split("/")[2]}</span>
+          <span>You are posting to course: {course}</span>
           <label for="">Title</label>
-          <input type="text" bind:value={post_title}  class="border border-black rounded px-1" required/>
+          <input type="text" bind:value={post_title} class="border border-black rounded px-1" required />
           <label for="">Description</label>
-          <input type="text" bind:value={post_description} class="border border-black rounded" required/>
+          <input type="text" bind:value={post_description} class="border border-black rounded" required />
           <button type="submit" class="rounded bg-blue-500 px-2 py-2">Submit</button>
         </form>
       </div>
