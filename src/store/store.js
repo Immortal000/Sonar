@@ -28,49 +28,7 @@ export const postsStore = writable({
 });
 
 // database add functions
-export const databaseHandler = {
-  addPost: async (post) => {
-    try {
-      const postRef = await addDoc(collection(db, "posts"), post);
-      return postRef;
-    } catch (error) {
-      console.log("Error has occured shithead - post");
-      console.log(error);
-    }
-  },
-
-  addPostToCourse: async (post, universityName, courseName) => {
-    const uniRef = doc(db, "universities", universityName);
-    const uniSnap = await getDoc(uniRef);
-
-    // university is registered
-    if (uniSnap.exists()) {
-      let university_data = uniSnap.data();
-      // course name is registered
-      if (courseName in university_data.courses) {
-        // add post to the post database
-        const postRef = await databaseHandler.addPost(post);
-
-        // update the uni snapshot with the new post added
-        let new_posts_data = [postRef.id, ...university_data["courses"][courseName].posts];
-        university_data["courses"][courseName].posts = new_posts_data;
-        await setDoc(doc(db, "universities", universityName), university_data);
-
-        // add post to the user post array
-        const userRef = doc(db, "users", auth.currentUser.uid);
-        const userSnap = await getDoc(userRef);
-        let userData = userSnap.data();
-        userData.posts.push(postRef.id);
-
-        await setDoc(doc(db, "users", auth.currentUser.uid), userData);
-      } else {
-        console.log("Course isnt registered");
-      }
-    } else {
-      console.log("University isnt registered");
-    }
-  },
-};
+export const databaseHandler = {};
 
 // auth handler
 export const authHandler = {
