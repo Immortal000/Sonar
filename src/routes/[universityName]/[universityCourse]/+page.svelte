@@ -3,6 +3,7 @@
   // css
   import "../../../styles/app.css";
   import Navbar from "../../../components/Navbar.svelte";
+  import PostContainer from "../../../components/PostContainer.svelte";
 
   import { authStore, errorStore } from "../../../store/store.js";
 
@@ -53,11 +54,11 @@
   <input type="text" bind:value={post_description} />
 
   <button on:click={createPost}> Ask a question </button> -->
-  <h1>Current uni: {university}</h1>
+  <!-- <h1>Current uni: {university}</h1>
   <button on:click={togglePost} class="bg-blue-500 rounded px-4 py-2 text-white"
     ><i class="fa-solid fa-plus text-white pr-1" />Post</button
-  >
-  {#if modal}
+  > -->
+  <!-- {#if modal}
     <div class="fixed top-0 left-0 bg-black bg-opacity-50 w-full h-full z-20">
       <div class="w-2/5 mx-auto bg-white rounded mt-52">
         <form action={createPost} class="w-full p-4 flex flex-col relative z-30 gap-2">
@@ -68,10 +69,10 @@
           <label for="">Title</label>
           <input type="text" bind:value={post_title} class="border border-black rounded px-1" required />
           <label for="">Description</label>
-          <input type="text" bind:value={post_description} class="border border-black rounded" required />
+          <textarea type="text" bind:value={post_description} class="border border-black rounded" required />
           <button type="submit" class="rounded bg-blue-500 px-2 py-2">Submit</button>
         </form>
       </div>
     </div>
-  {/if}
+  {/if} -->
 </div>
