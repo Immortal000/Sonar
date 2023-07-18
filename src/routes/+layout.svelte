@@ -21,14 +21,12 @@
         // updating the store value with the user data
         authStore.update((current) => {
           return {
+            ...current,
             user,
           };
         });
       }
     });
-
-    // unsubscribing from posts listener
-    const collectionRef = collection(db, "posts");
 
     return () => {
       authUnSub();
