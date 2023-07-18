@@ -2,8 +2,9 @@ import { writable } from "svelte/store";
 import { auth } from "../firebase";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { db, provider } from "../firebase";
-import { doc, setDoc, addDoc, collection, getDoc } from "firebase/firestore";
+import { doc, setDoc, addDoc, collection, getDoc, query, orderBy, limit } from "firebase/firestore";
 import userSchema from "../schemas/user.json";
+import { page } from "$app/stores";
 
 export const errorStore = writable({
   error: false,
@@ -23,12 +24,28 @@ export const uniStore = writable({
 
 // will have to implement paginations for posts
 export const postsStore = writable({
-  posts: [],
+  postsInfo: [],
+  allPosts: [],
+  displayPosts: [],
   pageNumber: 0,
 });
 
 // database add functions
 export const databaseHandler = {};
+
+// posts functions
+export const postsHandler = {
+  getAllPosts: async (university, course) => {
+    const uniRef = doc(db, "universities", university) || {};
+    const uni_data = await getDoc(uniRef);
+    if (uni_data.exists()) {
+      const uni_posts = uni_data.data().courses[course].posts;
+      postsStore.update((current) => {
+        return { ...current, allPosts: uni_posts };
+      });
+    }
+  },
+};
 
 // auth handler
 export const authHandler = {
@@ -51,15 +68,16 @@ export const authHandler = {
         }
 
         // update the current user
-        authStore.update(() => {
+        authStore.update((current) => {
           return {
+            ...current,
             user,
           };
         });
 
         // update the error state
-        errorStore.update(() => {
-          return { error: false, error_type: "" };
+        errorStore.update((current) => {
+          return { ...current, error: false, error_type: "" };
         });
       })
       .catch((error) => {
@@ -71,10 +89,10 @@ export const authHandler = {
       .then(() => {
         console.log("Signed out, fuck you!");
         authStore.update((current) => {
-          return { user: null };
+          return { ...current, user: null };
         });
         errorStore.update((current) => {
-          return { error: false, error_type: "" };
+          return { ...current, error: false, error_type: "" };
         });
       })
       .catch((error) => {
