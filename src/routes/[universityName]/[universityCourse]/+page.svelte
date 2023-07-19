@@ -22,7 +22,7 @@
 
   // mounting stuff
   onMount(async () => {
-    // await postsHandler.getAllPosts(university, course);
+    await postsHandler.getAllPosts(university, course);
     updatePosts();
     return () => {
       console.log("Unsubbed");
