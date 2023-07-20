@@ -7,7 +7,7 @@
   import UserPost from "../../../components/UserPost.svelte";
 
   import { authStore, errorStore, postsHandler, postsStore } from "../../../store/store.js";
-  import { createPost, updatePosts } from "../../../schemas/postFunctions";
+  import { createPost, updatePosts } from "../../../schemas/functions/postFunctions";
 
   import { onMount } from "svelte";
 

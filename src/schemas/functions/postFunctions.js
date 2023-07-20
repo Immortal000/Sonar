@@ -1,6 +1,6 @@
-import { authStore, errorStore, postsHandler, postsStore } from "../store/store";
+import { authStore, errorStore, postsHandler, postsStore } from "../../store/store";
 import { doc, setDoc, addDoc, collection, getDoc, query, orderBy, limit } from "firebase/firestore";
-import { db, provider } from "../firebase";
+import { db, provider } from "../../firebase";
 
 import Post from "./post";
 

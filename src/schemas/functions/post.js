@@ -1,7 +1,7 @@
-import postSchema from "./post.json";
+import postSchema from "../post.json";
 import { page } from "$app/stores";
-import { authStore } from "../store/store.js";
-import { auth, db } from "../firebase.js";
+import { authStore } from "../../store/store.js";
+import { auth, db } from "../../firebase.js";
 import { doc, getDoc, setDoc, addDoc, collection } from "firebase/firestore";
 
 export default class Post {
