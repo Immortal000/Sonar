@@ -2,7 +2,6 @@
   // university course
   // css
   import "../../../styles/app.css";
-  import Navbar from "../../../components/Navbar.svelte";
   import PostContainer from "../../../components/PostContainer.svelte";
   import UserPost from "../../../components/UserPost.svelte";
 

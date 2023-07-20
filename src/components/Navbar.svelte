@@ -34,7 +34,7 @@
         >
       </li>
       <li class="mr-3">
-        <a href="/createPost" class="inline-block bg-blue-500 hover:bg-blue-800 rounded px-4 py-2 text-white" >
+        <a href="/submit" class="inline-block bg-blue-500 hover:bg-blue-800 rounded px-4 py-2 text-white" >
           <i class="fa-solid fa-plus text-white pr-1" />Post
         </a>
       </li>

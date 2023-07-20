@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@tiptap/core": "^2.0.4",
 		"@tiptap/extension-bubble-menu": "^2.0.4",
+		"@tiptap/extension-character-count": "^2.0.4",
 		"@tiptap/extension-link": "^2.0.4",
 		"@tiptap/starter-kit": "^2.0.4",
 		"firebase": "^10.0.0",
