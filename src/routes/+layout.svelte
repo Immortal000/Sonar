@@ -1,6 +1,7 @@
 <script>
   // css
   import "../styles/app.css";
+  
   // components
   import Navbar from "../components/Navbar.svelte";
   import UserPost from "../components/UserPost.svelte";

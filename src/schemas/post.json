@@ -12,7 +12,7 @@
     "post_title": null,
     "post_content": null,
     "replies": [],
-    "attachments": [],
+    "attachments": { "images": [], "polls": [] },
 
     "meta_data": {
       "type": null,

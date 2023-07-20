@@ -41,7 +41,7 @@ export const postsHandler = {
     if (uni_data.exists()) {
       const uni_posts = uni_data.data().courses[course].posts;
       postsStore.update((current) => {
-        return { ...current, allPosts: uni_posts };
+        return { allPosts: uni_posts, displayPosts: [], pageNumber: 0, postsInfo: [] };
       });
     }
   },
