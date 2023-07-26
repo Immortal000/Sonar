@@ -7,7 +7,7 @@
   import UserPost from "../../../components/UserPost.svelte";
 
   import { authStore, errorStore, postsHandler, postsStore } from "../../../store/store.js";
-  import { createPost, updatePosts } from "../../../schemas/postFunctions";
+  import { createPost, updatePosts } from "../../../schemas/functions/postFunctions";
 
   import { onMount } from "svelte";
 
@@ -35,7 +35,7 @@
   <input type="text" bind:value={post_title} />
   <input type="text" bind:value={post_description} />
 
-  <button on:click={createPost}> Ask a question </button>
+  <button on:click={createPost(post_title, post_description, "main")}> Ask a question </button>
   <button on:click={updatePosts}>Load More</button>
 
   {#if $postsStore.postsInfo.length != 0}
@@ -44,7 +44,7 @@
         postTitle={post.post.post_title}
         course={post.university.course_id}
         postMessage={post.post.post_content}
-        userName={post.user.user_name}
+        userName={post.user.user_id}
       />
     {/each}
   {:else}
