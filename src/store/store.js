@@ -15,6 +15,7 @@ export const authStore = writable({
   user: null,
   loading: true,
   data: null,
+  user_name: "avigte",
 });
 
 export const uniStore = writable({
