@@ -24,6 +24,13 @@
   onMount(async () => {
     await postsHandler.getAllPosts(university, course);
     updatePosts();
+    // await fetch("/api/posts", {
+    //   method: "POST",
+    //   body: JSON.stringify({ university: university, course: course }),
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    // });
     return () => {
       console.log("Unsubbed");
     };
@@ -35,6 +42,7 @@
   <input type="text" bind:value={post_title} />
   <input type="text" bind:value={post_description} />
 
+  <!-- <button on:click={createPost(post_title, post_description, "main")}> Ask a question </button> -->
   <button on:click={createPost(post_title, post_description, "main")}> Ask a question </button>
   <button on:click={updatePosts}>Load More</button>
 
