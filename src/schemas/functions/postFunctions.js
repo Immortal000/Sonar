@@ -72,7 +72,7 @@ export const createPost = async (post_title, post_description, type = "main") =>
   if (user) {
     // make the request if a user is present. Logged in.
     const postClass = new Post(post_title, post_description, type);
-    postClass.createPost();
+    await postClass.createPost();
   } else {
     errorStore.update((current) => {
       return {

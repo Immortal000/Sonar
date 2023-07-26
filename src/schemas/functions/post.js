@@ -2,7 +2,7 @@ import postSchema from "../post.json";
 import { page } from "$app/stores";
 import { authStore } from "../../store/store.js";
 import { auth, db } from "../../firebase.js";
-import { doc, getDoc, setDoc, addDoc, collection } from "firebase/firestore";
+import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export default class Post {
   constructor(post_title, post_content, type) {
@@ -42,7 +42,7 @@ export default class Post {
       this.postSchema["post"]["post_title"] = this.post_title; // post title
       this.postSchema["post"]["post_content"] = this.post_content; // post description
       this.postSchema["post"]["meta_data"]["type"] = this.type;
-      this.postSchema["date_created"] = new Date(); // time stamp when the request was made
+      this.postSchema["date_created"] = serverTimestamp(); // time stamp when the request was made
       this.postSchema["university"]["university_id"] = this.university; // University id, ex.tamu
       this.postSchema["university"]["course_id"] = this.course; // course id, ex.csce120
       this.postSchema["user"]["user_name"] = this.user_id; // user name
