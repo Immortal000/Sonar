@@ -15,11 +15,13 @@ model User{
   userID String @id @default(uuid())
   createdAt DateTime @default(now())
 
+  userName String
   posts Post[]
   replies Replies[]
   courses Course[]
   university University @relation(fields: [universityName], references: [name])
   universityName String
+  moderator Boolean @default(false)
 }
 
 model Replies{
@@ -38,15 +40,15 @@ model Post{
   id String @id @default(uuid())
   createdAt DateTime @default(now())
 
-  title String
-  content String
+  title String?
+  content String?
   published Boolean @default(true)
   hidden Boolean @default(false)
   user User @relation(fields: [userId], references: [userID])
   userId String
   course Course @relation(fields: [courseName], references: [name])
   courseName String
-  upvotes Int
+  upvotes Int @default(0)
   replies Replies[]
 }
 
@@ -55,6 +57,7 @@ model Course{
   createdAt DateTime @default(now())
 
   name String @unique
+  private Boolean @default(false)
   university University @relation(fields: [universityName], references: [name])
   universityName String
   posts Post[]
