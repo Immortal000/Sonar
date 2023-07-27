@@ -48,6 +48,8 @@ model Post{
   userId String
   course Course @relation(fields: [courseName], references: [name])
   courseName String
+  university University @relation(fields: [universityName], references: [name])
+  universityName String
   upvotes Int @default(0)
   replies Replies[]
 }
@@ -68,5 +70,6 @@ model University{
   name String @unique
   courses Course[]
   members User[]
+  posts Post[]
 }
 
