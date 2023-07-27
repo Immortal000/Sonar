@@ -1,12 +1,8 @@
-export const load = () => {
-  const getPostInformation = async () => {
-    const response = await fetch(`/api/post/${postID}`);
-    const data = await response.json();
+export const load = async ({ fetch, params }) => {
+  let postID = params.postID;
 
-    return data;
-  };
+  const response = await fetch(`/api/posts/${postID}`);
+  const data = await response.json();
 
-  return {
-    posts: getPosts(),
-  };
+  return { data };
 };

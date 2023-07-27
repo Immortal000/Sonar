@@ -33,7 +33,7 @@ model Replies{
   postId String
   user User @relation(fields: [authorId], references: [userID])
   authorId String
-  upvotes Int
+  upvotes Int @default(0)
 }
 
 model Post{

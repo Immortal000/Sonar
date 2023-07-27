@@ -2,6 +2,19 @@ import { Prisma } from "@prisma/client";
 import { page } from "$app/stores";
 import { auth } from "../firebase.js";
 
+export const addReplyToPost = async (post_id, reply_content) => {
+  const reply_thing = await fetch("/api/replies", {
+    method: "POST",
+    body: JSON.stringify({
+      post_id: post_id,
+      content: reply_content,
+      user_id: auth.currentUser.uid,
+    }),
+  });
+
+  console.log("Done");
+};
+
 export const addPostToPosts = async (post_title, post_content) => {
   let university, course;
   page.subscribe((value) => {
