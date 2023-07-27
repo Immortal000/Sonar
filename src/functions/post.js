@@ -1,7 +1,13 @@
 import { Prisma } from "@prisma/client";
 import { page } from "$app/stores";
 import { auth } from "../firebase.js";
+import { get } from "svelte/store";
 
+/**
+ * Adds a reply to the specific post
+ * @param {String} post_id the ID of the post to reply to
+ * @param {String} reply_content the message contained in the reply
+ */
 export const addReplyToPost = async (post_id, reply_content) => {
   const reply_thing = await fetch("/api/replies", {
     method: "POST",
@@ -15,12 +21,19 @@ export const addReplyToPost = async (post_id, reply_content) => {
   console.log("Done");
 };
 
+/**
+ * Adds a specific post to the database based on the route's university name and the course name
+ * @param {String} post_title the title of the post
+ * @param {String} post_content the content of the post, there is currently no limit on the characters
+ */
 export const addPostToPosts = async (post_title, post_content) => {
   let university, course;
-  page.subscribe((value) => {
+  const param_sub = page.subscribe((value) => {
     university = value.params.universityName;
     course = value.params.universityCourse;
   });
+
+  param_sub(); // unsubscribe
   // university exists
   const post_thing = await fetch("/api/posts", {
     method: "POST",

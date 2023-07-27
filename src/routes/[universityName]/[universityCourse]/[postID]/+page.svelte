@@ -3,6 +3,11 @@
   import { page } from "$app/stores";
 
   export let data;
+  const replies = data.data.replies;
+
+  const post_title = data.data.post_title;
+  const post_content = data.data.post_content;
+
   let reply_content = "";
 </script>
 

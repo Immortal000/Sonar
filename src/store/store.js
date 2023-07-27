@@ -14,7 +14,6 @@ export const authStore = writable({
   user: null,
   loading: true,
   data: null,
-  user_name: "avigte",
 });
 
 export const uniStore = writable({
@@ -40,16 +39,26 @@ export const authHandler = {
         const user = result.user;
 
         // check if user exists in the database
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
+        // const userRef = doc(db, "users", user.uid);
+        // const userSnap = await getDoc(userRef);
 
-        if (!userSnap.exists()) {
-          let new_user = { ...userSchema };
-          new_user["user_id"] = user.uid;
-          new_user["user_name"] = user.displayName;
-          await setDoc(doc(db, "users", user.uid), new_user);
-        }
+        // if (!userSnap.exists()) {
+        //   let new_user = { ...userSchema };
+        //   new_user["user_id"] = user.uid;
+        //   new_user["user_name"] = user.displayName;
+        //   await setDoc(doc(db, "users", user.uid), new_user);
+        // }
 
+        const new_user_prisma = await fetch("/api/users", {
+          method: "POST",
+          body: JSON.stringify({
+            user_id: user.uid,
+            user_name: user.displayName,
+            university: "tamu",
+          }),
+        });
+
+        console.log("Prisma user added");
         // update the current user
         authStore.update((current) => {
           return {
@@ -64,6 +73,7 @@ export const authHandler = {
         });
       })
       .catch((error) => {
+        console.log(error);
         console.log("I HATE ERRORS, IM GONNA KMS");
       });
   },

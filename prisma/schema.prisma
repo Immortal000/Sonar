@@ -16,6 +16,7 @@ model User{
   createdAt DateTime @default(now())
 
   userName String
+  profile_image String @default("")
   posts Post[]
   replies Replies[]
   courses Course[]
