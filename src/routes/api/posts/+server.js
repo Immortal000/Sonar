@@ -49,7 +49,12 @@ export const GET = async ({ url }) => {
       universityName: university,
     },
     include: {
-      posts: true,
+      posts: {
+        include: {
+          replies: true,
+          user: true,
+        },
+      },
     },
   });
 

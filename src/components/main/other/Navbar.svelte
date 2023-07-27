@@ -1,7 +1,7 @@
 <script>
-  import "../styles/app.css";
+  import "../../../styles/app.css";
   import { auth, db, provider } from "../../../firebase";
-  import { authStore, authHandler } from "../../../store/store.js";
+  import { authStore, authHandler } from "../../../store/store";
 
   const loginWithGoogle = async () => {
     authHandler.signup();

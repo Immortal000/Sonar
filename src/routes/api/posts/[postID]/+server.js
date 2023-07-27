@@ -15,7 +15,11 @@ export const GET = async ({ url }) => {
       university: true,
       course: true,
       user: true,
-      replies: true,
+      replies: {
+        orderBy: {
+          upvotes: "asc",
+        },
+      },
     },
   });
 

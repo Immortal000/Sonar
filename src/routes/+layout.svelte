@@ -1,10 +1,10 @@
 <script>
   // css
   import "../styles/app.css";
-  
+
   // components
-  import Navbar from "../components/Navbar.svelte";
-  import UserPost from "../components/UserPost.svelte";
+  import Navbar from "../components/main/other/Navbar.svelte";
+  import UserPost from "../components/main/post/UserPost.svelte";
 
   import { onMount, onDestroy } from "svelte";
   import { auth, db, provider } from "../firebase";

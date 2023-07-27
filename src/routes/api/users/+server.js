@@ -30,6 +30,8 @@ export const POST = async (event) => {
     },
   }));
 
+  console.log(exists);
+
   if (!exists) {
     const user_update = await db.user.create({
       data: {

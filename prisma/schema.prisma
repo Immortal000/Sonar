@@ -12,7 +12,7 @@ datasource db {
 
 
 model User{
-  userID String @id @default(uuid())
+  userID String @id @default(uuid()) @unique
   createdAt DateTime @default(now())
 
   userName String

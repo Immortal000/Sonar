@@ -58,6 +58,8 @@ export const authHandler = {
           }),
         });
 
+        console.log(new_user_prisma);
+
         console.log("Prisma user added");
         // update the current user
         authStore.update((current) => {
