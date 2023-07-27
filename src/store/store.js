@@ -3,7 +3,6 @@ import { auth } from "../firebase";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { db, provider } from "../firebase";
 import { doc, setDoc, addDoc, collection, getDoc, query, orderBy, limit } from "firebase/firestore";
-import userSchema from "../schemas/user.json";
 import { page } from "$app/stores";
 
 export const errorStore = writable({
@@ -30,23 +29,6 @@ export const postsStore = writable({
   displayPosts: [],
   pageNumber: 0,
 });
-
-// database add functions
-export const databaseHandler = {};
-
-// posts functions
-export const postsHandler = {
-  getAllPosts: async (university, course) => {
-    const uniRef = doc(db, "universities", university) || {};
-    const uni_data = await getDoc(uniRef);
-    if (uni_data.exists()) {
-      const uni_posts = uni_data.data().courses[course].posts;
-      postsStore.update((current) => {
-        return { allPosts: uni_posts, displayPosts: [], pageNumber: 0, postsInfo: [] };
-      });
-    }
-  },
-};
 
 // auth handler
 export const authHandler = {
