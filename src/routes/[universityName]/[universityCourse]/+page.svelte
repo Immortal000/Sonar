@@ -8,6 +8,7 @@
 
   import { authStore, errorStore, postsHandler, postsStore } from "../../../store/store.js";
   import { createPost, updatePosts } from "../../../schemas/functions/postFunctions";
+  import { addPostToPosts } from "../../../functions/post.js";
 
   import { onMount } from "svelte";
 
@@ -23,6 +24,9 @@
   // mounting stuff
   onMount(async () => {
     await postsHandler.getAllPosts(university, course);
+    const new_posts = await fetch(`api/posts/?university=${university}&course=${course}`);
+    const response = await new_posts.json();
+    // console.log(response);
     updatePosts();
     return () => {
       console.log("Unsubbed");
@@ -35,7 +39,7 @@
   <input type="text" bind:value={post_title} />
   <input type="text" bind:value={post_description} />
 
-  <button on:click={createPost(post_title, post_description, "main")}> Ask a question </button>
+  <button on:click={addPostToPosts(post_title, post_description)}> Ask a question </button>
   <button on:click={updatePosts}>Load More</button>
 
   {#if $postsStore.postsInfo.length != 0}
