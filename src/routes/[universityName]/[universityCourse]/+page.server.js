@@ -1,4 +1,5 @@
-export const load = async ({ fetch, params }) => {
+export const load = async ({ fetch, params, depends }) => {
+  depends("course-posts:load-posts");
   const university = params.universityName;
   const course = params.universityCourse;
 

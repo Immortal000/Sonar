@@ -8,6 +8,7 @@
 
   import { authStore, errorStore, postsStore } from "../../../store/store.js";
   import { addPostToPosts } from "../../../functions/post.js";
+  import { invalidate } from "$app/navigation";
 
   import { onMount } from "svelte";
 
@@ -23,7 +24,15 @@
   // mounting stuff
   export let data;
   $: available_posts = data.data;
-  $: console.log(available_posts);
+
+  const refresh = () => {
+    invalidate("course-posts:load-posts");
+  };
+
+  onMount(() => {
+    refresh();
+    return () => {};
+  });
 </script>
 
 <div class="container">

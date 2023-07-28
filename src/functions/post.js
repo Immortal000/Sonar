@@ -18,7 +18,8 @@ export const addReplyToPost = async (post_id, reply_content) => {
     }),
   });
 
-  console.log("Done");
+  const data = await reply_thing.json();
+  return data;
 };
 
 /**
@@ -48,7 +49,7 @@ export const addPostToPosts = async (post_title, post_content) => {
 
   const new_post = await post_thing.json();
 
-  console.log(new_post.id);
+  // console.log(new_post.id);
 };
 
 export const check_validity = async (university) => {

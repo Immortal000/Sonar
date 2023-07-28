@@ -37,6 +37,7 @@ export const POST = async (event) => {
       data: {
         userID: data.user_id,
         userName: data.user_name,
+        profile_image: data.photoURL,
         university: {
           connect: {
             name: data.university,

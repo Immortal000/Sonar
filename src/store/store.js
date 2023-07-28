@@ -37,6 +37,7 @@ export const authHandler = {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
+        console.log(user);
 
         // check if user exists in the database
         // const userRef = doc(db, "users", user.uid);
@@ -55,6 +56,7 @@ export const authHandler = {
             user_id: user.uid,
             user_name: user.displayName,
             university: "tamu",
+            photoURL: user.photoURL,
           }),
         });
 

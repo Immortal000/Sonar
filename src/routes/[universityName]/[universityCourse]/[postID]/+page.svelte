@@ -1,6 +1,17 @@
 <script>
   import { addReplyToPost } from "../../../../functions/post";
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
+  import { invalidate } from "$app/navigation";
+
+  const refresh = () => {
+    invalidate("post-replies:view-replies");
+  };
+
+  onMount(() => {
+    refresh();
+    return () => {};
+  });
 
   export let data;
   $: replies = data.data.replies;
@@ -21,4 +32,9 @@
 {/each}
 
 <input type="text" placeholder="reply here..." bind:value={reply_content} />
-<button on:click={() => addReplyToPost($page.params.postID, reply_content)}>Post reply</button>
+<button
+  on:click={async () => {
+    const new_reply = await addReplyToPost($page.params.postID, reply_content);
+    replies = [...replies, new_reply];
+  }}>Post reply</button
+>

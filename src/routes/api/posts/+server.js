@@ -33,10 +33,6 @@ export const POST = async (event) => {
     },
   });
 
-  //   return new Response(new_post, {
-  //     "Content-Type": "application/json",
-  //     status: 200,
-  //   });
   return new Response(JSON.stringify(new_post));
 };
 
