@@ -18,6 +18,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@prisma/client": "^5.0.0",
 		"@tiptap/core": "^2.0.4",
 		"@tiptap/extension-bubble-menu": "^2.0.4",
 		"@tiptap/extension-character-count": "^2.0.4",
