@@ -4,9 +4,14 @@ import { PrismaClient } from "@prisma/client";
 
 const db = new PrismaClient();
 
-export const GET = async ({ params }) => {
+export const GET = async ({ params, url }) => {
   const university = params.university;
   const course = params.course;
+
+  const include = split(url.searchParams.get("include"), ",");
+
+  const replies = include.includes("replies");
+  const users = include.includes("users");
 
   const current_course = await db.course.findFirst({
     where: {
@@ -14,10 +19,11 @@ export const GET = async ({ params }) => {
       universityName: university,
     },
     include: {
-      users: true,
+      university: true,
+      users,
       posts: {
         include: {
-          replies: true,
+          replies,
           user: true,
         },
       },

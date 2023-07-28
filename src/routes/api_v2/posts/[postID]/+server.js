@@ -9,7 +9,7 @@ const db = new PrismaClient();
  * @param {Object} params
  * @returns the stringified post data
  */
-export const GET = async ({ params }) => {
+export const GET = async ({ params, url }) => {
   const post_id = params.postID;
 
   const post_data = await db.post.findFirst({
@@ -22,52 +22,13 @@ export const GET = async ({ params }) => {
       user: true,
       replies: {
         orderBy: {
-          upvotes: "asc",
+          upvotes: "desc",
         },
       },
     },
   });
 
   return new Response(JSON.stringify(post_data));
-};
-
-/**
- * Creates a new post
- * @param {Object} params
- * @returns
- */
-export const POST = async ({ params, request }) => {
-  const post_data = await request.json();
-  const course = post_data.course;
-  const university = post_data.university;
-  const user_id = post_data.user_id;
-
-  await db.post.create({
-    data: {
-      title: post_data.title,
-      content: post_data.content,
-      course: {
-        connect: {
-          name: course,
-          universityName: university,
-        },
-      },
-      published: true,
-      user: {
-        connect: {
-          userID: user_id,
-        },
-      },
-      university: {
-        connect: {
-          name: university,
-        },
-      },
-    },
-  });
-
-  //   console.log(new_post);
-  return new Response(JSON.stringify({ success: true }));
 };
 
 /**
@@ -99,10 +60,7 @@ export const PATCH = async ({ params, request }) => {
     where: {
       id: post_id,
     },
-    data: {
-      content: new_post_data.content,
-      title: new_post_data.title,
-    },
+    data: new_post_data,
   });
   return new Response(`Post with id: ${post_id} updated!`);
 };

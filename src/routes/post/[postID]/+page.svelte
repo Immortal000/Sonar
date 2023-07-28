@@ -1,5 +1,5 @@
 <script>
-  import { addReplyToPost } from "../../../../functions/post";
+  import { addReplyToPost } from "../../../functions/post";
   import { page } from "$app/stores";
   import { onMount } from "svelte";
   import { invalidate } from "$app/navigation";

@@ -14,7 +14,6 @@
 
   import { page } from "$app/stores";
   import { auth } from "../../../firebase";
-  import { goto } from "$app/navigation";
 
   // app variables
   let post_title = "";
@@ -53,7 +52,7 @@
 
   {#if available_posts.length != 0}
     {#each available_posts as post}
-      <a href={`/${university}/${course}/${post.id}`} class="w-1/3 block">
+      <a href={`/post/${post.id}`} class="w-1/3 block">
         <div class="border-2 border-blue-500 m-5 p-5 w-full" data-post-id={post.id}>
           <p>Asked by: {post.user.userName}</p>
           <p class="text-3xl">{post.title}</p>

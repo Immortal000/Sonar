@@ -3,7 +3,7 @@ export const load = async ({ fetch, params, depends }) => {
   const getAllReplies = async () => {
     let postID = params.postID;
 
-    const response = await fetch(`/api/posts/${postID}`);
+    const response = await fetch(`/api_v2/posts/${postID}`);
     const data = await response.json();
 
     return data;
