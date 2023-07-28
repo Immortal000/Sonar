@@ -61,6 +61,7 @@ model Course{
 
   name String @unique
   private Boolean @default(false)
+  approved Boolean @default(false)
   university University @relation(fields: [universityName], references: [name])
   universityName String
   posts Post[]

@@ -36,7 +36,7 @@ export const addPostToPosts = async (post_title, post_content) => {
 
   param_sub(); // unsubscribe
   // university exists
-  const post_thing = await fetch("/api/posts", {
+  const post_thing = await fetch("/api_v2/posts/post", {
     method: "POST",
     body: JSON.stringify({
       university: university,

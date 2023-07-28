@@ -4,7 +4,7 @@ export const load = async ({ fetch, params, depends }) => {
     const university = params.universityName;
     const course = params.universityCourse;
 
-    const response = await fetch(`/api/posts?university=${university}&course=${course}`);
+    const response = await fetch(`/api_v2/course/${university}/${course}`);
     const data = await response.json();
 
     return data;

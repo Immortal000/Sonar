@@ -23,18 +23,22 @@
 </script>
 
 <!-- the actual post -->
-<h1>{data.data.title}</h1>
-<p>{data.data.content}</p>
+<div class="border-2 border-blue-500 p-5 m-5 w-2/3">
+  <h1>{data.data.title}</h1>
+  <p>{data.data.content}</p>
+</div>
 
 <!-- Replies -->
 {#each replies as reply}
-  <p>{reply.content}</p>
+  <div class="border-2 border-blue-500 p-5 m-5 ml-20 w-1/2">
+    <p>{reply.content}</p>
+  </div>
 {/each}
 
 <input type="text" placeholder="reply here..." bind:value={reply_content} />
 <button
   on:click={async () => {
-    const new_reply = await addReplyToPost($page.params.postID, reply_content);
-    replies = [...replies, new_reply];
+    await addReplyToPost($page.params.postID, reply_content);
+    refresh();
   }}>Post reply</button
 >
