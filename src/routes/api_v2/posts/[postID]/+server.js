@@ -20,6 +20,7 @@ export const GET = async ({ params, url }) => {
       university: true,
       course: true,
       user: true,
+      tags: true,
       replies: {
         orderBy: {
           upvotes: "desc",

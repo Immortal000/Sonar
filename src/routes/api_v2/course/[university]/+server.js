@@ -4,8 +4,12 @@ import { PrismaClient } from "@prisma/client";
 
 const db = new PrismaClient();
 
-export const GET = async () => {
-  const all_unis = await db.university.findMany();
+export const GET = async ({ params }) => {
+  const all_courses = await db.course.findMany({
+    where: {
+      universityName: params.university,
+    },
+  });
 
-  return new Response(JSON.stringify(all_unis));
+  return new Response(JSON.stringify(all_courses));
 };

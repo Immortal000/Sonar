@@ -1,6 +1,7 @@
 import { error } from "@sveltejs/kit";
 import { json } from "@sveltejs/kit";
 import { PrismaClient } from "@prisma/client";
+import { split } from "postcss/lib/list";
 
 const db = new PrismaClient();
 
@@ -12,14 +13,17 @@ export const GET = async ({ params, url }) => {
 
   const replies = include.includes("replies");
   const users = include.includes("users");
+  const tags = include.includes("tags");
 
   const current_course = await db.course.findFirst({
     where: {
       name: course,
       universityName: university,
     },
-    include: {
+    select: {
+      users: true,
       university: true,
+      course_professors: true,
       users,
       posts: {
         include: {

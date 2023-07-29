@@ -10,73 +10,101 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model User{
-  userID String @id @default(uuid()) @unique
+model User {
+  userID    String   @id @unique @default(uuid())
   createdAt DateTime @default(now())
 
-  userName String
-  profile_image String @default("")
-  posts Post[]
-  post_upvotes Post[] @relation(name: "post_upvotes")
-  replies Replies[]
-  reply_upvotes Replies[] @relation(name: "reply_upvotes")
-  courses Course[]
-  university University @relation(fields: [universityName], references: [name])
+  userName       String
+  profile_image  String     @default("")
+  posts          Post[]
+  post_upvotes   Post[]     @relation(name: "post_upvotes")
+  replies        Replies[]
+  reply_upvotes  Replies[]  @relation(name: "reply_upvotes")
+  courses        Course[]
+  university     University @relation(fields: [universityName], references: [name])
   universityName String
-  moderator Boolean @default(false)
+  moderator      Boolean    @default(false)
+  professor      Boolean    @default(false)
+  major          String     @default("")
+  minor          String     @default("")
 }
 
-model Replies{
-  id String @id @default(uuid())
+model Replies {
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  content String
-  post Post @relation(fields: [postId], references: [id])
-  postId String
-  user User @relation(fields: [authorId], references: [userID])
+  content  String
+  post     Post   @relation(fields: [postId], references: [id])
+  postId   String
+  user     User   @relation(fields: [authorId], references: [userID])
   authorId String
 
   user_upvotes User[] @relation(name: "reply_upvotes")
-  upvotes Int @default(0)
+  upvotes      Int    @default(0)
+
+  replies     Replies[] @relation("reply_replies")
+  parentReply Replies?  @relation("reply_replies", references: [id], fields: [parentId])
+  parentId    String?
+
+  professor_approved Boolean @default(false)
 }
 
-model Post{
-  id String @id @default(uuid())
+model Tag {
+  id String @id @default(cuid())
+
+  tag   String @unique
+  posts Post[] @relation("posts_tags")
+  color String @default("#000000")
+}
+
+model Post {
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  title String?
-  content String?
-  published Boolean @default(true)
-  hidden Boolean @default(false)
-  user User @relation(fields: [userId], references: [userID])
-  userId String
-  course Course @relation(fields: [courseName], references: [name])
-  courseName String
-  university University @relation(fields: [universityName], references: [name])
-  universityName String
-  upvotes Int @default(0)
-  user_upvotes User[] @relation(name: "post_upvotes")
-  replies Replies[]
+  title              String?
+  content            String?
+  published          Boolean    @default(true)
+  hidden             Boolean    @default(false)
+  user               User       @relation(fields: [userId], references: [userID])
+  userId             String
+  course             Course     @relation(fields: [courseName], references: [name])
+  courseName         String
+  university         University @relation(fields: [universityName], references: [name])
+  universityName     String
+  upvotes            Int        @default(0)
+  user_upvotes       User[]     @relation(name: "post_upvotes")
+  replies            Replies[]
+  tags               Tag[]      @relation("posts_tags")
+  professor_approved Boolean    @default(false)
 }
 
-model Course{
-  courseID String @id @default(uuid())
+model Course {
+  courseID  String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  name String @unique
-  private Boolean @default(false)
-  approved Boolean @default(false)
-  university University @relation(fields: [universityName], references: [name])
-  universityName String
-  posts Post[]
-  users User[]
+  name              String      @unique
+  private           Boolean     @default(false)
+  approved          Boolean     @default(false)
+  university        University  @relation(fields: [universityName], references: [name])
+  universityName    String
+  posts             Post[]
+  users             User[]
+  course_professors Professor[] @relation("course_professors")
 }
 
-model University{
-  name String @unique
-  courses Course[]
-  members User[]
-  posts Post[]
+model University {
+  name       String      @unique
+  courses    Course[]
+  members    User[]
+  posts      Post[]
+  professors Professor[]
 }
 
+model Professor {
+  id   String @id @default(cuid())
+  name String
+
+  course_professors Course[]   @relation("course_professors")
+  university        University @relation(fields: [universityName], references: [name])
+  universityName    String
+}
