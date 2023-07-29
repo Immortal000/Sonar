@@ -28,8 +28,8 @@ export const POST = async ({ request }) => {
       },
     });
 
-    return new Response("New user created!");
+    return new Response(new_user_data, { status: 200 });
   }
 
-  return new Response("User already exists");
+  return new Response("Successful Request", { status: 500, statusText: "User already exists!" });
 };
