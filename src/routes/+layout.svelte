@@ -1,29 +1,10 @@
-<!-- LAYOUT OF THE ENTIRE WEB PAGE
-    - Header -> Navbar 
-    - Main Content -> This will be the "SLOT"
-    - Footer
--->
-
+<!-- src/routes/+layout.svelte -->
 <script>
-  import { error } from "@sveltejs/kit";
-  import { page } from "$app/stores";
-  import { university_list, course_list } from "../store/index";
-
-  $: current_university = $page.params.university;
-  $: current_course = $page.params.course;
-
-  $: check_for_error();
-
-  // CHECK FOR AVAILABLE ROUTES
-  const check_for_error = () => {
-    if (!!current_university) {
-      if (!$university_list.includes(current_university)) {
-        throw error(404, {
-          message: "University not found 💀",
-        });
-      }
-    }
-  };
+  import { invalidate } from "$app/navigation";
+  import { onMount } from "svelte";
+  import { user } from "../store/user";
+  import NavigationBar from "../lib/components/Navigation_bar.svelte";
 </script>
 
+<NavigationBar />
 <slot />

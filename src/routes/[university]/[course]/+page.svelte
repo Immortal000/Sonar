@@ -1,21 +1,11 @@
 <script>
   import "../../../styles/app.css";
-  import { course_list, university_list } from "../../../store/index";
-  import { invalidate } from "$app/navigation";
-  import { onMount } from "svelte";
-
-  export let data;
-  $: all_course_posts = data.data;
-
-  // Calls the load function on +page.server.js again
-  const refresh = () => {
-    invalidate("load-course-information");
-  };
-
-  // whenever the component is mounted, refresh to get the new updated information
-  onMount(() => {
-    refresh();
-
-    return () => {};
-  });
+  import { enhance } from "$app/forms";
 </script>
+
+<form method="POST" use:enhance on:submit|preventDefault>
+  <input type="text" placeholder="post title" name="post_title" required />
+  <input type="text" placeholder="post content" name="post_content" required />
+
+  <button formaction="?/create">Submit</button>
+</form>

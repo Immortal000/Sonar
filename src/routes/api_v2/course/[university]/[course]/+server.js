@@ -41,8 +41,6 @@ export const POST = async ({ params, request }) => {
   const university = params.university;
   const course = params.course;
 
-  console.log(university, course);
-
   db.course.create({
     data: {
       name: course,

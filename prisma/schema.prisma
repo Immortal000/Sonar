@@ -14,22 +14,23 @@ model User {
   userID    String   @id @unique @default(cuid())
   createdAt DateTime @default(now())
 
-  userName             String
-  profile_image        String      @default("")
-  posts                Post[]
-  post_upvotes         Post[]      @relation(name: "post_upvotes")
-  replies              Replies[]
-  reply_upvotes        Replies[]   @relation(name: "reply_upvotes")
-  courses              Course[]
-  moderated_courses    Course[]    @relation(name: "course_moderators")
-  moderated_university University? @relation(name: "university_moderators", fields: [moderated_university_id], references: [id])
-  university           University  @relation(fields: [universityName], references: [name])
-  universityName       String
-  moderator            Boolean     @default(false)
-  professor            Boolean     @default(false)
-  major                String      @default("")
-  minor                String      @default("")
-  moderated_university_id         String?
+  userName                String
+  profile_image           String      @default("")
+  email                   String      @default("")
+  posts                   Post[]
+  post_upvotes            Post[]      @relation(name: "post_upvotes")
+  replies                 Replies[]
+  reply_upvotes           Replies[]   @relation(name: "reply_upvotes")
+  courses                 Course[]
+  moderated_courses       Course[]    @relation(name: "course_moderators")
+  moderated_university    University? @relation(name: "university_moderators", fields: [moderated_university_id], references: [id])
+  university              University? @relation(fields: [universityName], references: [name])
+  universityName          String?
+  moderator               Boolean     @default(false)
+  professor               Boolean     @default(false)
+  major                   String      @default("")
+  minor                   String      @default("")
+  moderated_university_id String?
 }
 
 model Replies {

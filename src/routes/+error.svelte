@@ -1,6 +1,7 @@
 <!-- ERROR PAGE -->
 <script>
   import "../styles/app.css"; // tailwind CSS
+  import { page } from "$app/stores";
 </script>
 
-<h1 class="text-3xl">404: Error has occured</h1>
+<h1 class="text-3xl">{$page.error.message}</h1>

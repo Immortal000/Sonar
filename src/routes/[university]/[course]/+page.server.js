@@ -1,20 +1,19 @@
-import { error } from "@sveltejs/kit";
+import { goto } from "$app/navigation";
+import { error, redirect } from "@sveltejs/kit";
+import prisma from "$lib/prisma";
 
-export const load = async ({ params, fetch, depends }) => {
-  depends("load-course-information");
-  const get_course_info = async () => {
-    const response = await fetch(`/api_v2/course/${params.university}/${params.course}?include=users,posts`);
-    const course_info = await response.json();
+export const load = async ({}) => {};
 
-    // If this course doesnt exist
-    if (!!!course_info) {
-      throw error(404, `Course ${params.course} not found`);
-    }
+export const actions = {
+  create: async ({ request, params }) => {
+    const form_data = await request.formData();
+    const post_title = form_data.get("post_title");
+    const post_content = form_data.get("post_content");
+  },
 
-    return course_info;
-  };
+  delete: async ({}) => {},
 
-  return {
-    data: get_course_info(),
-  };
+  update: async ({}) => {},
+
+  pin: async ({}) => {},
 };

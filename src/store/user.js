@@ -1,13 +1,10 @@
 import { get, writable } from "svelte/store";
-import { auth } from "../firebase";
+import { auth } from "../firebase/client";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
-import { db, provider } from "../firebase";
+import { db, provider } from "../firebase/client";
 
 const createStore = () => {
-  const { subscribe, set, update } = writable({
-    user_id: null,
-    user_courses: [],
-  });
+  const { subscribe, set, update } = writable(null);
 
   /**
    * Signs up a user with Google OAuth
@@ -29,10 +26,7 @@ const createStore = () => {
 
     // const user_response_message = user_create_request.statusText;
     if (user_create_request.status === 200) {
-      set({
-        user_id: user.uid,
-        user_courses: [],
-      });
+      set(user);
     } else if (user_create_request.status === 500) {
       alert("user exists already");
     }
@@ -46,30 +40,21 @@ const createStore = () => {
     const user = response.user;
 
     const login_user_info = await fetch(`/api_v2/user/${user.uid}?include=courses`);
-    const user_info = await login_user_info.json();
 
-    console.log(user_info);
-
-    set({
-      user_id: user.uid,
-      user_courses: [],
-    });
+    set(user);
   };
 
   const google_sign_out = async () => {
     const user_info = get(user);
     if (!!user_info.user_id) {
-      set({
-        user_id: null,
-        user_courses: [],
-      });
+      set(null);
     } else {
       console.log("Need to sign in first");
     }
   };
 
-  const set_user = (user_oject) => {
-    set(user_oject);
+  const set_user = (user_object) => {
+    set(user_object);
   };
 
   return {

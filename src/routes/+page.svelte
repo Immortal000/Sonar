@@ -4,7 +4,7 @@
 
   // VARIABLES
   export let data; // the data we get from 'page.server.js'
-  $: all_universities = data.data; // Reactive statement
+  $: all_universities = data.home_data; // Reactive statement
 
   // FUNCTIONS
 </script>

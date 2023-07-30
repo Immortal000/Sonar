@@ -1,11 +1,23 @@
-import { redirect } from "@sveltejs/kit";
+import { SvelteKitAuth } from "@auth/sveltekit";
+import Google from "@auth/core/providers/google";
+import { GOOGLE_ID, GOOGLE_SECRET, AUTH_SECRET } from "$env/static/private";
 
-export const handle = async ({ request, resolve, event }) => {
-  // If the origin isnt matched
-  if (event.url.origin != "http://localhost:5173") {
-    redirect(303, "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-  }
-
-  const response = await resolve(event);
-  return response;
-};
+export const handle = SvelteKitAuth(async (event) => {
+  const authOptions = {
+    providers: [Google({ clientId: GOOGLE_ID, clientSecret: GOOGLE_SECRET })],
+    secret: AUTH_SECRET,
+    trustHost: true,
+    callbacks: {
+      async session({ session, token, newSession }) {
+        if (session.user) {
+          session.user = token;
+        }
+        return session;
+      },
+    },
+    session: {
+      strategy: "jwt",
+    },
+  };
+  return authOptions;
+});
