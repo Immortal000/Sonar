@@ -60,7 +60,7 @@
           class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0"
           on:click={() => (pop_down_triggered = !pop_down_triggered)}
         >
-          <img src={$page.data.session.user.picture} alt="Profile Picture" class="w-10 h-10 rounded-full" />
+          <img src={$page.data.session.user.picture} alt="profile pic" class="w-10 h-10 rounded-full" />
         </button>
       </div>
       <div
