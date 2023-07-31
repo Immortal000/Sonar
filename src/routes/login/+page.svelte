@@ -1,5 +1,4 @@
 <script>
-  import "../../styles/app.css";
   import { invalidate, goto } from "$app/navigation";
   import { onMount } from "svelte";
   import { enhance } from "$app/forms";
