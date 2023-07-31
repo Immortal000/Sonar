@@ -1,6 +1,6 @@
 <!-- ERROR PAGE -->
 <script>
-  import "../styles/app.css"; // tailwind CSS
+  import "../lib/styles/app.css"; // tailwind CSS
   import { page } from "$app/stores";
 </script>
 

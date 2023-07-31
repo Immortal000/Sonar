@@ -1,6 +1,7 @@
 <script>
   // IMPORTS
-  import "../styles/app.css"; // tailwind CSS
+  import "../lib/styles/app.css"; // tailwind CSS
+  import SearchBar from "../lib/components/Search_bar.svelte";
 
   // VARIABLES
   export let data; // the data we get from 'page.server.js'
@@ -11,3 +12,4 @@
 
 <!-- MAIN HOME PAGE -->
 <h1>Main page</h1>
+<SearchBar />
