@@ -2,7 +2,6 @@
 <script>
   import { invalidate } from "$app/navigation";
   import { onMount } from "svelte";
-  import { user } from "../store/user";
   import NavigationBar from "../lib/components/Navigation_bar.svelte";
 </script>
 

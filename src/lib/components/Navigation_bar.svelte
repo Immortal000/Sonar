@@ -1,5 +1,5 @@
 <script>
-  import "../../styles/app.css";
+  import "../styles/app.css";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import { signOut } from "@auth/sveltekit/client";
@@ -32,24 +32,6 @@
           class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4"
           href="/">Contact</a
         >
-      </li>
-      <li class="mr-3">
-        <a href="/createPost" class="inline-block bg-blue-500 hover:bg-blue-800 rounded px-4 py-2 text-white">
-          <i class="fa-solid fa-plus text-white pr-1" />Post
-        </a>
-      </li>
-      <li class="mr-3">
-        <form
-          action="/"
-          method="POST"
-          autocomplete="on"
-          class="flex justify-between h-full w-full px-2 border border-gray-500 rounded focus-within:outline"
-        >
-          <input type="text" name="search" placeholder="Search" class="h-full focus:outline-none" />
-          <button>
-            <i class="fa-solid fa-magnifying-glass" />
-          </button>
-        </form>
       </li>
     </ul>
   </div>

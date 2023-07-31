@@ -1,16 +1,17 @@
 <script>
   import "../../styles/app.css";
   import { enhance } from "$app/forms";
+  import { page } from "$app/stores";
 
   export let data;
-  $: universities = Object.keys(data.available_unis);
+  $: universities = $page.data.available_unis;
   let current_university_select;
 </script>
 
 <form action="/create" method="POST" use:enhance on:submit|preventDefault>
   <select name="university" bind:value={current_university_select}>
     {#each universities as university}
-      <option value={university}>{university}</option>
+      <option value="{university}.name">{university.name}</option>
     {/each}
   </select>
 
