@@ -2,7 +2,7 @@
   import { enhance } from "$app/forms";
   export let data;
 
-  //   console.log(data.test);
+  console.log(data.post_data);
 </script>
 
 <form method="POST" use:enhance on:submit|preventDefault>

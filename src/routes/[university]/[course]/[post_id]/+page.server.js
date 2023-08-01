@@ -2,10 +2,25 @@ import { invalidate } from "$app/navigation";
 import prisma from "../../../../lib/prisma";
 import { fail } from "@sveltejs/kit";
 
-export const load = async ({ depends }) => {
+export const load = async ({ depends, params }) => {
   depends("load:post-information");
-  console.log("loaded!");
-  return { test: "HI" };
+  const post_id = params.post_id;
+  const get_post_info = async () => {
+    const post_info = await prisma.post.findMany({
+      where: {
+        id: post_id,
+      },
+      include: {
+        replies: true,
+      },
+    });
+
+    return post_info[0];
+  };
+
+  return {
+    post_data: get_post_info(),
+  };
 };
 
 export const actions = {
@@ -97,7 +112,14 @@ export const actions = {
       });
     }
   },
-  upvote_reply: async ({}) => {},
+  upvote_reply: async ({ params, request, locals, url }) => {
+    const session = await locals.getSession();
+    if (!!!session?.user) {
+      return fail();
+    }
+
+    const reply_id = url.searchParams.get("reply_id");
+  },
   remove_upvote_post: async ({ params, request, locals, url }) => {
     const session = await locals.getSession();
     if (!!!session?.user) {

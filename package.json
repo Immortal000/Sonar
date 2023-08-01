@@ -26,6 +26,7 @@
     "@tiptap/extension-link": "^2.0.4",
     "@tiptap/starter-kit": "^2.0.4",
     "firebase": "^10.0.0",
-    "firebase-admin": "^11.10.0"
+    "firebase-admin": "^11.10.0",
+    "prisma-extension-bark": "^0.1.1"
   }
 }
