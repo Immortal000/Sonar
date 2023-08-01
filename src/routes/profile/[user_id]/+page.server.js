@@ -13,7 +13,7 @@ export const load = async ({ params }) => {
         courses: true,
       },
     });
-
+    console.log(user_data)
     return user_data;
   };
   return { user_data: get_user_info() };
