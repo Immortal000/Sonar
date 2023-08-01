@@ -1,8 +1,14 @@
 import { error } from "@sveltejs/kit";
 import { json } from "@sveltejs/kit";
 import { PrismaClient } from "@prisma/client";
+import prisma from "../../../lib/prisma";
 
 const db = new PrismaClient();
+
+export const GET = async ({ locals }) => {
+  const session = await locals.getSession();
+  return new Response(JSON.stringify(session.user));
+};
 
 export const POST = async ({ request }) => {
   const new_user_data = await request.json();

@@ -38,8 +38,8 @@ model Replies {
   createdAt DateTime @default(now())
 
   content  String
-  post     Post   @relation(fields: [postId], references: [id])
-  postId   String
+  post     Post?   @relation(fields: [postId], references: [id])
+  postId   String?
   user     User   @relation(fields: [authorId], references: [userID])
   authorId String
 
