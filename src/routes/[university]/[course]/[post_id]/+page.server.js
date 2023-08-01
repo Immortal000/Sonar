@@ -15,7 +15,25 @@ export const load = async ({ depends, params }) => {
       },
     });
 
+    const all_replies = await get_tree_replies();
+
     return post_info[0];
+  };
+
+  const get_tree_replies = async () => {
+    const replies = await prisma.replies.findMany({
+      where: {
+        post: {
+          id: post_id,
+        },
+        parentReply: null,
+      },
+      include: {
+        replies: true,
+      },
+    });
+
+    return replies;
   };
 
   return {
