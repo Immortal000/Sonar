@@ -1,8 +1,8 @@
 <script>
     import { onDestroy, onMount } from "svelte";
-    import Tiptap from "../../components/Tiptap.svelte";
+    import Tiptap from "../../../components/Tiptap.svelte";
     import { createPost } from "../../schemas/postFunctions";
-    import { authStore, errorStore } from "../../store/store.js";
+    import { authStore, errorStore } from "../../../store/store.js";
     import {
         doc,
         getDoc,
@@ -10,7 +10,7 @@
         addDoc,
         collection,
     } from "firebase/firestore";
-    import { db } from "../../firebase";
+    import { db } from "../../../firebase";
 
     // app variables
     let post_title = "";
