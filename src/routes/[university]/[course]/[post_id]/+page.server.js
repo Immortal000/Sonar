@@ -6,7 +6,7 @@ export const load = async ({ depends, params }) => {
   depends("load:post-information");
   const post_id = params.post_id;
   const get_post_info = async () => {
-    const post_info = await prisma.post.findMany({
+    const post_info = await prisma.post.findFirst({
       where: {
         id: post_id,
       },
@@ -15,7 +15,23 @@ export const load = async ({ depends, params }) => {
       },
     });
 
-    return post_info[0];
+    return post_info;
+  };
+
+  const generate_reply_tree = async () => {
+    const parent_replies = await prisma.replies.findMany({
+      where: {
+        post: {
+          id: post_id,
+        },
+      },
+      include: {
+        replies: true,
+      },
+    });
+
+    // have to use recursion to get all the replies, I wanna kms
+    const reply_tree = parent_replies.map(async (reply) => {});
   };
 
   return {
