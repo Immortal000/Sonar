@@ -18,38 +18,6 @@ export const load = async ({ depends, params }) => {
     return post_info;
   };
 
-  const generate_reply_tree = async () => {
-    const parent_replies = await prisma.replies.findMany({
-      where: {
-        post: {
-          id: post_id,
-        },
-      },
-      include: {
-        replies: true,
-      },
-    });
-
-    // have to use recursion to get all the replies, I wanna kms
-    const reply_tree = parent_replies.map(async (reply) => {});
-  };
-
-  const get_tree_replies = async () => {
-    const replies = await prisma.replies.findMany({
-      where: {
-        post: {
-          id: post_id,
-        },
-        parentReply: null,
-      },
-      include: {
-        replies: true,
-      },
-    });
-
-    return replies;
-  };
-
   return {
     post_data: get_post_info(),
   };
@@ -65,12 +33,17 @@ export const actions = {
 
     const form_data = await request.formData();
     const post_id = params.post_id;
-    await prisma.replies.create({
+    const new_reply = await prisma.replies.create({
       data: {
         content: form_data.get("reply"),
         post: {
           connect: {
             id: post_id,
+          },
+        },
+        user: {
+          connect: {
+            userID: session.user.sub,
           },
         },
       },
@@ -85,6 +58,7 @@ export const actions = {
     const form_data = await request.formData();
     const post_id = params.post_id;
     const reply_id = url.searchParams.get("reply_id");
+
     await prisma.replies.create({
       data: {
         content: form_data.get("reply"),
