@@ -40,7 +40,7 @@ model Replies {
   content  String
   post     Post?   @relation(fields: [postId], references: [id])
   postId   String?
-  user     User   @relation(fields: [authorId], references: [userID])
+  user     User    @relation(fields: [authorId], references: [userID])
   authorId String
 
   user_upvotes User[] @relation(name: "reply_upvotes")
@@ -87,6 +87,7 @@ model Course {
   createdAt DateTime @default(now())
 
   name              String      @unique
+  courseFullName    String      @default("")
   private           Boolean     @default(false)
   approved          Boolean     @default(false)
   university        University  @relation(fields: [universityName], references: [name])

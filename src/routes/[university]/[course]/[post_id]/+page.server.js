@@ -6,7 +6,7 @@ export const load = async ({ depends, params }) => {
   depends("load:post-information");
   const post_id = params.post_id;
   const get_post_info = async () => {
-    const post_info = await prisma.post.findMany({
+    const post_info = await prisma.post.findFirst({
       where: {
         id: post_id,
       },
@@ -15,7 +15,7 @@ export const load = async ({ depends, params }) => {
       },
     });
 
-    return post_info[0];
+    return post_info;
   };
 
   return {
@@ -33,12 +33,17 @@ export const actions = {
 
     const form_data = await request.formData();
     const post_id = params.post_id;
-    await prisma.replies.create({
+    const new_reply = await prisma.replies.create({
       data: {
         content: form_data.get("reply"),
         post: {
           connect: {
             id: post_id,
+          },
+        },
+        user: {
+          connect: {
+            userID: session.user.sub,
           },
         },
       },
@@ -53,6 +58,7 @@ export const actions = {
     const form_data = await request.formData();
     const post_id = params.post_id;
     const reply_id = url.searchParams.get("reply_id");
+
     await prisma.replies.create({
       data: {
         content: form_data.get("reply"),
