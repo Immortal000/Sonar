@@ -1,5 +1,5 @@
 <script>
-  import "../../../styles/app.css";
+  import "$lib/styles/app.css";
   import { enhance } from "$app/forms";
 </script>
 
