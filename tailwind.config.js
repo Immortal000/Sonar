@@ -3,6 +3,10 @@ export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
+      boxShadow: {
+        "profile-card": "0 2px 4px rgba(0, 0, 0, 0.25)"
+      },
+    
       colors: {
         'dark-primary': '#457B9D',
         'light-primary': '#d9e3e9',
