@@ -12,26 +12,23 @@
   let pop_down_triggered = false;
 </script>
 
-<nav class="flex justify-between w-10/12 m-auto py-5">
+<nav class="flex justify-between w-10/12 m-auto py-2">
   <div class="w-max">
     <ul class="flex">
       <li class="mr-3">
         <a
-          class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4"
+          class="inline-block border border-white rounded hover:border-gray-200 text-light-text hover:bg-gray-200 py-2 px-4"
+          href="/">SONAR</a
+        >
+      </li>
+      <li class="mr-3">
+        <a
+          class="inline-block border border-white rounded hover:border-gray-200 text-light-text hover:bg-gray-200 py-2 px-4"
           href="/">Home</a
         >
       </li>
-      <li class="mr-3">
-        <a
-          class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4"
-          href="/">About Us</a
-        >
-      </li>
-      <li class="mr-3">
-        <a
-          class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4"
-          href="/">Contact</a
-        >
+      <li class="align-center">
+        <input type="text" placeholder="search for a course" class="border-2 rounded-xl px-2 h-7 my-2">
       </li>
     </ul>
   </div>
@@ -42,11 +39,7 @@
           class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0"
           on:click={() => (pop_down_triggered = !pop_down_triggered)}
         >
-          <img
-            src={$page.data.session.user.picture}
-            alt="profile pic"
-            class="w-10 h-10 rounded-full"
-          />
+          <img src={$page.data.session.user.picture} alt="profile pic" class="w-8 h-8 rounded-full my-auto mx-auto" />
         </button>
       </div>
       <div
@@ -81,8 +74,9 @@
   {:else}
     <button
       on:click={loginWithGoogle}
-      class="inline-block border border-blue-500 rounded py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white"
-      >Sign In</button
+      class="inline-block border border-light-primary rounded-full px-4 h-7 my-auto bg-light-primary hover:bg-dark-primary hover:text-light-primary text-dark-primary"
+      >Log in</button
     >
   {/if}
 </nav>
+<div class="w-full h-0 border-light-primary border-[1px]"></div>

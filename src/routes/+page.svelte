@@ -11,23 +11,25 @@
 </script>
 
 <!-- MAIN HOME PAGE -->
-<div class="min-w-[380px] w-1/3 h-full flex text-center flex-col m-auto">
-  <h1 class="text-5xl font-semibold py-16">Find any course <br/> at any university</h1>
-    <h2 class="text-xl py-2">
+<div class="min-w-[525px] w-2/5 h-full flex text-center flex-col m-auto">
+  <h1 class="text-[65px] font-semibold py-4 mt-8 leading-tight">Find any course <br/> at any university</h1>
+    <h2 class="text-xl py-4">
       {#if !!found_university}
-      Find a <b>course</b> at {found_university.name}
+      Find a <b class="text-dark-primary">course</b> at {found_university.name}
       {:else}
-        Enter your <b>school</b> to start
+        Enter your <b class="text-dark-primary">school</b> to start
       {/if}
     </h2>
   <SearchBar bind:searched_university={found_university}/>
   <h3 class="text-md py-1">
     {#if !!found_university}
-      Look for a course at a different school
+      <button on:click={() => {
+        found_university = null
+        }}>Look for a course at a different school</button>
     {:else}
       Look up by course name
     {/if}
 
   </h3>
-  <h2 class="text-xl py-20">Learn from <b>real students</b> about any class! <br/>From tips for passing to questions to due<br/>dates to info on professors</h2>
+  <h2 class="text-xl py-20 text-light-text">Learn from <b>real students</b> about any class! <br/>From tips for passing to questions to due<br/>dates to info on professors</h2>
 </div>
