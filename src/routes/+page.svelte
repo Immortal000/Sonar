@@ -12,7 +12,7 @@
 
 <!-- MAIN HOME PAGE -->
 <div class="min-w-[525px] w-2/5 h-full flex text-center flex-col m-auto">
-  <h1 class="text-[65px] font-semibold py-4 mt-20 leading-tight">Find any course <br/> at any university</h1>
+  <h1 class="text-[65px] font-semibold py-4 mt-8 leading-tight">Find any course <br/> at any university</h1>
     <h2 class="text-xl py-4">
       {#if !!found_university}
       Find a <b class="text-dark-primary">course</b> at {found_university.name}
